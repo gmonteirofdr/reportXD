@@ -1,0 +1,9 @@
+@EndUserText.label: 'Supplier Basic Data - Service Definition'
+
+define service ZSD_SupplierBasicData
+  provider contract odata_v4_ui
+{
+  expose ZC_SupplierBasicData as SupplierBasicData;
+  expose I_Country             as Country;
+  expose I_SupplierAccountGroup as SupplierAccountGroup;
+}

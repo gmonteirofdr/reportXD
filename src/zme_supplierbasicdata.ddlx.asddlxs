@@ -1,0 +1,240 @@
+@Metadata.layer: #CORE
+
+annotate view ZC_SupplierBasicData with
+{
+
+  /* ------------------------------------------------------------------ */
+  /* Header info                                                         */
+  /* ------------------------------------------------------------------ */
+  @UI.headerInfo: {
+    typeName:       'Fornecedor',
+    typeNamePlural: 'Fornecedores',
+    title:          { type: #STANDARD, value: 'SupplierName' },
+    description:    { type: #STANDARD, value: 'Supplier'     }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Presentation variant — sort default por Supplier asc               */
+  /* ------------------------------------------------------------------ */
+  @UI.presentationVariant: [{
+    sortOrder: [{ by: 'Supplier', direction: #ASC }],
+    visualizations: [{ type: #AS_LINEITEM }]
+  }]
+
+  /* ------------------------------------------------------------------ */
+  /* Selection fields (filter bar)                                       */
+  /* ------------------------------------------------------------------ */
+  @UI.selectionField: [{ position: 10 }]
+  Supplier;
+
+  @UI.selectionField: [{ position: 20 }]
+  SupplierName;
+
+  @UI.selectionField: [{ position: 30 }]
+  Country;
+
+  @UI.selectionField: [{ position: 40 }]
+  SupplierAccountGroup;
+
+  @UI.selectionField: [{ position: 50, qualifier: 'AdaptFilters' }]
+  PostingIsBlocked;
+
+  @UI.selectionField: [{ position: 60, qualifier: 'AdaptFilters' }]
+  CreationDate;
+
+  /* ------------------------------------------------------------------ */
+  /* Line item (list report columns)                                     */
+  /* ------------------------------------------------------------------ */
+  @UI.lineItem: [{
+    position:   10,
+    importance: #HIGH,
+    label:      'Fornecedor'
+  }]
+  Supplier;
+
+  @UI.lineItem: [{
+    position:   20,
+    importance: #HIGH,
+    label:      'Nome do Fornecedor'
+  }]
+  SupplierName;
+
+  @UI.lineItem: [{
+    position:   30,
+    importance: #HIGH,
+    label:      'Grupo de Contas'
+  }]
+  SupplierAccountGroup;
+
+  @UI.lineItem: [{
+    position:   40,
+    importance: #MEDIUM,
+    label:      'Cidade'
+  }]
+  CityName;
+
+  @UI.lineItem: [{
+    position:   50,
+    importance: #MEDIUM,
+    label:      'País'
+  }]
+  Country;
+
+  @UI.lineItem: [{
+    position:   60,
+    importance: #MEDIUM,
+    label:      'CNPJ/CPF'
+  }]
+  TaxNumber1;
+
+  @UI.lineItem: [{
+    position:          70,
+    importance:        #HIGH,
+    label:             'Bloqueado p/ Lançamento',
+    criticality:       'PostingIsBlockedCriticality',
+    criticalityRepresentation: #WITH_ICON
+  }]
+  PostingIsBlocked;
+
+  @UI.lineItem: [{
+    position:   80,
+    importance: #LOW,
+    label:      'Data de Criação'
+  }]
+  CreationDate;
+
+  /* campo técnico — oculto na UI */
+  @UI.hidden: true
+  PostingIsBlockedCriticality;
+
+  /* ------------------------------------------------------------------ */
+  /* Object Page — Header Status & Data Point                            */
+  /* ------------------------------------------------------------------ */
+  @UI.dataPoint: {
+    qualifier:   'BlockedStatus',
+    title:       'Bloqueado p/ Lançamento',
+    criticality: 'PostingIsBlockedCriticality'
+  }
+  PostingIsBlocked;
+
+  @UI.dataPoint: {
+    qualifier: 'AccountGroup',
+    title:     'Grupo de Contas'
+  }
+  SupplierAccountGroup;
+
+  @UI.headerFacet: [
+    {
+      type:      #DATAPOINT_REFERENCE,
+      qualifier: 'BlockedStatus',
+      position:  10
+    },
+    {
+      type:      #DATAPOINT_REFERENCE,
+      qualifier: 'AccountGroup',
+      position:  20
+    }
+  ]
+  SupplierAccountGroup;
+
+  /* ------------------------------------------------------------------ */
+  /* Object Page — Facets                                                */
+  /* ------------------------------------------------------------------ */
+  @UI.facet: [
+    {
+      id:        'Identification',
+      purpose:   #STANDARD,
+      type:      #COLLECTION,
+      label:     'Identificação',
+      position:  10
+    },
+    {
+      id:        'IdentificationFields',
+      purpose:   #STANDARD,
+      type:      #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Identification',
+      parentId:  'Identification',
+      position:  10
+    },
+    {
+      id:        'Location',
+      purpose:   #STANDARD,
+      type:      #COLLECTION,
+      label:     'Localização',
+      position:  20
+    },
+    {
+      id:        'LocationFields',
+      purpose:   #STANDARD,
+      type:      #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Location',
+      parentId:  'Location',
+      position:  10
+    },
+    {
+      id:        'FiscalData',
+      purpose:   #STANDARD,
+      type:      #COLLECTION,
+      label:     'Dados Fiscais',
+      position:  30
+    },
+    {
+      id:        'FiscalDataFields',
+      purpose:   #STANDARD,
+      type:      #FIELDGROUP_REFERENCE,
+      targetQualifier: 'FiscalData',
+      parentId:  'FiscalData',
+      position:  10
+    },
+    {
+      id:        'StatusAdmin',
+      purpose:   #STANDARD,
+      type:      #COLLECTION,
+      label:     'Status e Administração',
+      position:  40
+    },
+    {
+      id:        'StatusAdminFields',
+      purpose:   #STANDARD,
+      type:      #FIELDGROUP_REFERENCE,
+      targetQualifier: 'StatusAdmin',
+      parentId:  'StatusAdmin',
+      position:  10
+    }
+  ]
+  Supplier;
+
+  /* ------------------------------------------------------------------ */
+  /* Field groups (Object Page field layout)                             */
+  /* ------------------------------------------------------------------ */
+  @UI.identification: [{ position: 10, qualifier: 'Identification', label: 'Fornecedor' }]
+  Supplier;
+
+  @UI.identification: [{ position: 20, qualifier: 'Identification', label: 'Nome do Fornecedor' }]
+  SupplierName;
+
+  @UI.identification: [{ position: 30, qualifier: 'Identification', label: 'Grupo de Contas' }]
+  SupplierAccountGroup;
+
+  @UI.identification: [{ position: 10, qualifier: 'Location', label: 'Cidade' }]
+  CityName;
+
+  @UI.identification: [{ position: 20, qualifier: 'Location', label: 'País' }]
+  Country;
+
+  @UI.identification: [{ position: 10, qualifier: 'FiscalData', label: 'CNPJ/CPF' }]
+  TaxNumber1;
+
+  @UI.identification: [{
+    position:          10,
+    qualifier:         'StatusAdmin',
+    label:             'Bloqueado p/ Lançamento',
+    criticality:       'PostingIsBlockedCriticality',
+    criticalityRepresentation: #WITH_ICON
+  }]
+  PostingIsBlocked;
+
+  @UI.identification: [{ position: 20, qualifier: 'StatusAdmin', label: 'Data de Criação' }]
+  CreationDate;
+
+}
