@@ -100,7 +100,7 @@ annotate view ZC_SupplierBasicData with
 
   @UI: {
     lineItem:   [{ position: 30, importance: #HIGH, label: 'Grupo de Contas' }],
-    selectionField: [{ position: 40 }],
+    selectionField: [{ position: 50 }],
     dataPoint:  { qualifier: 'AccountGroup', title: 'Grupo de Contas' },
     fieldGroup: [{ qualifier: 'Identification', position: 30, label: 'Grupo de Contas' }]
   }
@@ -120,6 +120,13 @@ annotate view ZC_SupplierBasicData with
   Country;
 
   @UI: {
+    lineItem:       [{ position: 55, importance: #MEDIUM, label: 'Região (UF)' }],
+    selectionField: [{ position: 35 }],
+    fieldGroup:     [{ qualifier: 'Location', position: 30, label: 'Região (UF)' }]
+  }
+  Region;
+
+  @UI: {
     lineItem:   [{ position: 60, importance: #MEDIUM, label: 'CNPJ/CPF' }],
     fieldGroup: [{ qualifier: 'FiscalData', position: 10, label: 'CNPJ/CPF' }]
   }
@@ -133,7 +140,7 @@ annotate view ZC_SupplierBasicData with
       criticality:             'PostingIsBlockedCriticality',
       criticalityRepresentation: #WITH_ICON
     }],
-    selectionField: [{ position: 50 }],
+    selectionField: [{ position: 60 }],
     dataPoint: {
       qualifier:   'BlockedStatus',
       title:       'Bloqueado p/ Lançamento',
@@ -151,7 +158,7 @@ annotate view ZC_SupplierBasicData with
 
   @UI: {
     lineItem:       [{ position: 80, importance: #LOW, label: 'Data de Criação' }],
-    selectionField: [{ position: 60 }],
+    selectionField: [{ position: 70 }],
     fieldGroup:     [{ qualifier: 'StatusAdmin', position: 20, label: 'Data de Criação' }]
   }
   CreationDate;

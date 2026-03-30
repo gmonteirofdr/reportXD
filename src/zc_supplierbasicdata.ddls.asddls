@@ -8,6 +8,7 @@ define view entity ZC_SupplierBasicData
 {
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.8
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Supplier_VH', element: 'Supplier' } }]
   key Supplier,
 
       @Search.defaultSearchElement: true
@@ -18,6 +19,10 @@ define view entity ZC_SupplierBasicData
 
       @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Country', element: 'Country' } }]
       Country,
+
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'I_RegionVH', element: 'Region' },
+                                            additionalBinding: [{ localElement: 'Country', element: 'Country' }] }]
+      Region,
 
       TaxNumber1,
 
@@ -31,5 +36,6 @@ define view entity ZC_SupplierBasicData
         else          3
       end as PostingIsBlockedCriticality,
 
+      @Consumption.filter.selectionType: #RANGE
       CreationDate
 }

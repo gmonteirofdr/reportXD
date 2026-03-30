@@ -14,6 +14,7 @@ define view entity ZI_SupplierBasicData
       SupplierName,
       CityName,
       Country,
+      Region,
       TaxNumber1,
       SupplierAccountGroup,
       PostingIsBlocked,
