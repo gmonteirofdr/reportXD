@@ -1,0 +1,9 @@
+workspace = "default"
+project = "reportxd"
+
+[briefing]
+inject_on_session_start = "true"
+max_chars = 4000
+
+[capture]
+ignore_paths = [".env", "**/.env", "**/*secret*", "**/*.key", "~/fidaro/keys-and-tokens/**"]

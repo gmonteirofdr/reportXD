@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schema.abaplint.org/schema.json",
+  "global": {
+    "files": "/src/**/*.*",
+    "exclude": [],
+    "rename_groups": [],
+    "applyFormattingReplacements": false,
+    "skipGeneratedGatewayClasses": true,
+    "skipGeneratedPersistentClasses": true,
+    "skipGeneratedFunctionGroups": true
+  },
+  "syntax": {
+    "version": "Cloud",
+    "errorNamespace": "^(Z|Y)",
+    "globalConstants": [],
+    "globalMacros": []
+  },
+  "rules": {}
+}
